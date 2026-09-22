@@ -34,13 +34,9 @@ private:
         }
         if(temp1){
             newlist->next = temp1;
-            temp1 = temp1->next;
-            newlist = newlist->next;
         }
         if(temp2){
             newlist->next = temp2;
-            temp2 = temp2->next;
-            newlist = newlist->next;
         }
         return temp->next;
     }
