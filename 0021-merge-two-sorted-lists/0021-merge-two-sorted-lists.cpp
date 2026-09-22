@@ -1,27 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode dummy(-1);  // dummy head
-        ListNode* tail = &dummy;
-
-        ListNode* curr1 = list1;
-        ListNode* curr2 = list2;
-
-        while (curr1 != nullptr && curr2 != nullptr) {
-            if (curr1->val <= curr2->val) {
-                tail->next = curr1;
-                curr1 = curr1->next;
-            } else {
-                tail->next = curr2;
-                curr2 = curr2->next;
-            }
-            tail = tail->next;
+        if(list1 == nullptr){
+            return list2;
         }
-
-        // Attach remaining nodes
-        if (curr1 != nullptr) tail->next = curr1;
-        if (curr2 != nullptr) tail->next = curr2;
-
-        return dummy.next;  // skip dummy
+        if(list2 == nullptr){
+            return list1;
+        }
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
+        ListNode* temp = new ListNode(0);
+        ListNode* newlist = temp;
+        while(temp1 && temp2){
+            if(temp1->val <= temp2->val){
+                newlist->next = temp1;
+                temp1 = temp1->next;
+            }
+            else{
+                newlist->next = temp2;
+                temp2 = temp2->next;
+            }
+            newlist = newlist->next;
+        }
+        if(temp1){
+            newlist->next = temp1;
+            temp1 = temp1->next;
+            newlist = newlist->next;
+        }
+        if(temp2){
+            newlist->next = temp2;
+            temp2 = temp2->next;
+            newlist = newlist->next;
+        }
+        return temp->next;
     }
 };
