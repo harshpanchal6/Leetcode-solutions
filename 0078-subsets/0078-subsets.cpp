@@ -1,21 +1,21 @@
 class Solution {
-private:
-    void genratesubset(int ind , vector<int>&list , vector<vector<int>>&ans , vector<int>nums , int n){
-        if(ind == n){
-            ans.push_back(list);
-            return ;
-        }
-
-        genratesubset(ind+1 , list , ans , nums , n);
-        list.push_back(nums[ind]);
-        genratesubset(ind+1 , list , ans , nums , n);
-        list.pop_back();
-    }
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>>ans;
-        vector<int>list;
-        genratesubset(0 , list , ans , nums , nums.size());
+           
+        int n = nums.size();
+        vector<vector<int>> ans;
+        int count = (1 << n);
+        
+        for(int val = 0; val < count; val++) {
+            vector<int> subset;
+            for(int i=0; i < n; i++) {
+                if(val & (1 << i)) {
+                    subset.push_back(nums[i]);
+                }
+            }
+            ans.push_back(subset);
+        }
+        
         return ans;
     }
 };
