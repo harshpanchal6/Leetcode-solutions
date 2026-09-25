@@ -4,15 +4,23 @@ public:
         int n = g.size();
         int m = s.size();
 
-        sort(g.begin() , g.end());
-        sort(s.begin() , s.end());
-        int l = 0 , r = 0;
-        while(l < n && r < m){
-            if(g[l] <= s[r]){
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+
+        int count = 0;
+        int l = 0, r = 0;
+
+        while(l < n && r < m) {
+            if(g[l] <= s[r]) {
+                count++;
                 l++;
+                r++;
             }
-            r++;
+            else {
+                r++;
+            }
         }
-        return l;
+
+        return count;
     }
 };
