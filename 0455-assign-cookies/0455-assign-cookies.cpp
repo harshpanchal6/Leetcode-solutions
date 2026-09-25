@@ -6,15 +6,13 @@ public:
 
         sort(g.begin() , g.end());
         sort(s.begin() , s.end());
-        int count = 0;
         int l = 0 , r = 0;
         while(l < n && r < m){
             if(g[l] <= s[r]){
-                count++;
                 l++;
             }
             r++;
         }
-        return count;
+        return l;
     }
 };
